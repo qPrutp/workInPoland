@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableReviews extends Migration
+class CreateTableCarousels extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTableReviews extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('carousels', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name',100);
+            $table->string('images',100);
             $table->text('text');
-
+            
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateTableReviews extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('carousels');
     }
 }
