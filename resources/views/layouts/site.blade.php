@@ -23,33 +23,27 @@
 	<!-- Content Section -->
 	@yield('content')
 
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
     <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script> -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    
-<!--     <script type="text/javascript">
-    	function Anchor(active){
-    		if(active == true){
-    			var hash = window.location.hash;
-    			if(hash){
-    				$("#menu a").removeClass("active");
-    				$("a[href="+hash+"]").addClass("active");
-    			}
-    		}
-    		function AnchorHref(){
-    			var anchor = $(this);
-    			if(hash){
-    				$("#menu a").removeClass("active");
-    				anchor.addClass("active");
-    			}
-    			$("html, body").animate({
-    				scrollTop: $(anchor.attr("href")).offset().top
-    			},500);
-    		}
-    		$("a[href*=#]").click(AnchorHref);
-    	}
-    	Anchor(false);
-    </script> -->
+
+	<script type="text/javascript">
+		$('a[href^="#"]').on('click', function(event) {
+
+		    var target = $( $(this).attr('href') );
+
+		    if( target.length ) {
+		        event.preventDefault();
+		        $('html, body').animate({
+		            scrollTop: target.offset().top-54
+		        }, 1000);
+		    }
+
+		});
+	</script>
+
 </body>
 </html>
