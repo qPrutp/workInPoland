@@ -1,45 +1,41 @@
-   <!-- Carousel Section -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url('{{ asset('assets/img/slaid1.jpg') }}')">
-        <div class="carousel-caption d-none d-md-block">
-			<h2>ОФОРМЛЕННЯ</h2>
-			<p>БЕЗ ПІДБОРУ ВАКАНСІЙ</p>
-			<h3>3000 грн</h3>
-        </div>
-      </div>
-      <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('{{ asset('assets/img/slaid2.jpg') }}')">
-        <div class="carousel-caption d-none d-md-block">
-			<h2>ПРАЦЕВЛАШТУВАННЯ<br/>
-			ПО БІОМЕТРИЧНОМУ ПАСПОРТУ</h2>
-			<h3>2000 грн</h3>
-        </div>
-      </div>
-      <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('{{ asset('assets/img/slaid3.jpg') }}')">
-        <div class="carousel-caption d-none d-md-block">
-        	<h2>Оформлення повного<br/>
-			ПАКЕТУ ДОКУМЕНТІВ:</h2>
-			<h3>3000 грн</h3>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+<!-- Carousel Section -->
+@if(isset($carousels))
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+
+		@foreach($carousels as $k=>$carousel)
+			<li data-target="#carouselExampleIndicators" data-slide-to="$k" class="{{ ($k == 0) ? 'active' : '' }}"></li>
+		@endforeach
+	  <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+	  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+	  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+	</ol>
+	<div class="carousel-inner" role="listbox">
+
+@foreach($carousels as $k=>$carousel)
+
+	<div class="carousel-item {{ ($k == 0) ? 'active' : '' }}" style="background-image: url('assets/img/{{ $carousel['images'] }}')">
+		<div class="carousel-caption d-none d-md-block">
+			{!! $carousel->text !!}
+		</div>
+	</div>
+
+@endforeach
+
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Next</span>
+	</a>
 </div>
+
+@endif
+<!-- /.row -->
 
 
 <!-- Vacantions Section -->
@@ -55,7 +51,7 @@
 	<div class="row">
 		<div class="col-lg-12 mb-12">
 			<div class="card h-100">
-				<h4 class="card-header">{{ $item['name'] }}</h4>
+				<h4 class="card-header">{{ $item->name_vacancy }}</h4>
 				<div class="card-body">
 					<div class="col-lg-12 col-sm-12 portfolio-item">
 						<div class="row">
@@ -69,27 +65,27 @@
 									<table width="100%">
 										<tr>
 											<td>zl/год</td>
-											<td>{{ $item['rate_per_hour'] }}</td>
+											<td>{{ $item->rate_per_hour }}</td>
 										</tr>
 										<tr>
 											<td>місце роботи</td>
-											<td>{{ $item['place_work'] }}</td>
+											<td>{{ $item->place_work }}</td>
 										</tr>
 										<tr>
 											<td>проживання</td>
-											<td>{{ $item['accommodation'] }}</td>
+											<td>{{ $item->accommodation }}</td>
 										</tr>
 										<tr>
 											<td>досвід роботи</td>
-											<td>{{ $item['experience'] }}</td>
+											<td>{{ $item->experience }}</td>
 										</tr>
 										<tr>
 											<td>вік</td>
-											<td>{{ $item['age'] }}</td>
+											<td>{{ $item->age }}</td>
 										</tr>
 										<tr>
 											<td>знання мови</td>
-											<td>{{ $item['language'] }}</td>
+											<td>{{ $item->language }}</td>
 										</tr>
 									</table>
 									<br/>
@@ -181,138 +177,88 @@
 <!-- /.row -->
 
 
-<!-- Contact Form -->
-<div id="write_us" class="row">
-	<div class="col-lg-5">
-		<h4>Заповніть заявку, вказавши Ваші контактні дані для зворотнього зв'язку. Ми зв'яжимось з Вами в накорочший термін.</h4>
-		<form name="sentMessage" id="contactForm" novalidate>
-			<div class="control-group form-group">
-				<div class="controls">
-					<label><i class="fa fa-user" aria-hidden="true"></i> Як Вас звати?</label>
-					<input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-					<p class="help-block"></p>
+<!-- WriteUs Form -->
+	<div id="write_us" class="row">
+		<div class="col-lg-5">
+			<h4>Заповніть заявку, вказавши Ваші контактні дані для зворотнього зв'язку. Ми зв'яжимось з Вами в накорочший термін.</h4>
+			<form name="sentMessage" id="contactForm" novalidate action="{{ route('home') }}" method="post">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label><i class="fa fa-user" aria-hidden="true"></i> Як Вас звати?</label>
+						<input type="text" class="form-control" id="name" name="name">
+					</div>
 				</div>
-			</div>
-			<div class="control-group form-group">
-				<div class="controls">
-					<label><i class="fa fa-phone" aria-hidden="true"></i> Ваш контактний телефон:</label>
-					<input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+				<!-- <div class="control-group form-group">
+					<div class="controls">
+						<label><i class="fa fa-phone" aria-hidden="true"></i> Ваш контактний телефон:</label>
+						<input type="tel" class="form-control" id="phone">
+					</div>
+				</div> -->
+				<div class="control-group form-group">
+					<div class="controls">
+						<label><i class="fa fa-envelope" aria-hidden="true"></i> Email для звязку:</label>
+						<input type="email" class="form-control" id="email" name="email">
+					</div>
 				</div>
-			</div>
-			<div class="control-group form-group">
-				<div class="controls">
-					<label><i class="fa fa-envelope" aria-hidden="true"></i> Email для звязку:</label>
-					<input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label><i class="fa fa-pencil" aria-hidden="true"></i> Текст повідомлення:</label>
+						<textarea rows="10" cols="100" class="form-control" id="message"  name="text" maxlength="999" style="resize:none"></textarea>
+					</div>
 				</div>
-			</div>
-			<div class="control-group form-group">
-				<div class="controls">
-					<label><i class="fa fa-pencil" aria-hidden="true"></i> Текст повідомлення:</label>
-					<textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
-				</div>
-			</div>
-			<div id="success"></div>
-			<button type="submit" class="btn btn-primary" id="sendMessageButton">Надіслати</button>
-		</form>
+				<div id="success"></div>
+				<button type="submit" class="btn btn-primary" id="sendMessageButton">Надіслати</button>
+
+				{{ csrf_field() }}
+
+			</form>
+		</div>
 	</div>
-</div>
-<br/>
-<br/>
+	<br/>
+	<br/>
 <!-- /.row -->
 
 
 
-	<!-- Page Heading/Breadcrumbs -->
+<!-- Reviews Section -->
 
-@if(isset($reviews))
+	@if(isset($reviews))
 
 	<h1 id="reviews" class="mt-4 mb-3">Відгуки
 		<small>про нас</small>
 	</h1>
+	
 	<div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
 
-@for($i=0,$h=0,$c=0; $i < count($reviews); $i++,$h++,$c++)
-		<div class="card">
-			<div class="card-header" role="tab" id="$h">
-				<h5 class="mb-0">
-					@if($i == 0)
-						<a data-toggle="collapse" data-parent="#accordion" href="#$c" aria-expanded="true" aria-controls="$c">{{ $reviews[$i]['name'] }}</a>
-					@else
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#$c" aria-expanded="false" aria-controls="$c">{{ $reviews[$i]['name'] }}</a>
-					@endif
-				</h5>
+		@foreach($reviews as $k=>$review)
+
+			<div class="card">
+				<div class="card-header spoiler_links" role="tab">
+					<h5 class="mb-0">
+						<a class=" {{ ($k == 0) ? '' : 'collapsed' }}" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true">{{ $review['name'] }}</a>
+					</h5>
+				</div>
+				<div class="spoiler_body" style='{{ ($k == 0) ? '' : 'display:none' }}' role="tabpanel">
+					<div class="card-body">
+						{{ $review['text'] }}
+					</div>
+				</div>
 			</div>
 
-			<div id="$c" class="collapse show" role="tabpanel" aria-labelledby="$h">
-				<div class="card-body">
-					{{ $reviews[$i]['text'] }}
-				</div>
-			</div>
-		</div>
+		@endforeach
 
-@endfor
-		<!-- <div class="card">
-			<div class="card-header" role="tab" id="headingOne">
-				<h5 class="mb-0">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Андрій Коваль</a>
-				</h5>
-			</div>
-
-			<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-				<div class="card-body">
-					БОЛЬШОЕ Спасибо за визу.пересекли границу без проблем)буду вас советывать. Работаете честно и быстро)даже при вознекновении некоторых неловкостей – решили все быстро =)
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" role="tab" id="headingTwo">
-				<h5 class="mb-0">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Алена Мищук
-				</a>
-				</h5>
-			</div>
-			<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-				<div class="card-body">
-					Мені сподобалось співпрацювати з вами, роботу знайшли швидко, візу оформили швидко – це те, про що я мріяв ( нема замороки жодної). Вже 5 років відправляюсь до роботи, а так швидко роботи ще не знаходив
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" role="tab" id="headingThree">
-				<h5 class="mb-0">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Павло Мельник</a>
-				</h5>
-			</div>
-				<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-				<div class="card-body">
-					Приєднуюсь до позитивних коментарів, відношення лояльне, оформлення візи не затяжне, от саме стою в черзі на кордоні, і думаю, що варто було б написати відгук, адже люди дійсно зробили все, що вимагалось, аби ше тільки черги на кордоні рухались швидше, то взагалі б процес підготовки до роботи за кордоном був би не затяжним і без жодних проблем
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" role="tab" id="headingFour">
-				<h5 class="mb-0">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Павло Мельник</a>
-				</h5>
-			</div>
-				<div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-				<div class="card-body">
-					Приєднуюсь до позитивних коментарів, відношення лояльне, оформлення візи не затяжне, от саме стою в черзі на кордоні, і думаю, що варто було б написати відгук, адже люди дійсно зробили все, що вимагалось, аби ше тільки черги на кордоні рухались швидше, то взагалі б процес підготовки до роботи за кордоном був би не затяжним і без жодних проблем
-				</div>
-			</div>
-		</div> -->
 		<br>
-		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 			Додати відгук
 		</button>
 	</div>
 
 	@endif
+
 	<br>
 	<br>
 </div>
-
+<!-- /.row -->
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -345,6 +291,7 @@
 		</div>
 	</div>
 </div>
+<!-- /.row -->
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">

@@ -44,6 +44,21 @@
 
 		});
 	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.spoiler_links').click(function() {
+				$("div[class^='spoiler_body']").hide('normal');
+				if ($(this).parent().children('div.spoiler_body').css("display")=="none") {
+					$("div[class^='spoiler_body']").hide('normal');
+					$(this).parent().children('div.spoiler_body').toggle('normal');
+				}
+				else $("div[class^='spoiler_body']").hide('normal');
+				return false;
+			});
+		});
+	</script>
+
 
 </body>
 </html>
