@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use phpQuery;
 
 use App\Carousel;
 use App\Contact;
@@ -19,6 +19,7 @@ use DB;
 class IndexController extends Controller
 {
     //
+
 
     public function execute(Request $request) {
 
@@ -50,11 +51,38 @@ class IndexController extends Controller
 
     	// }
 
+    	// Parser
+    	$site = 'https://workinpoland.com.ua';
+		$html = $site.'/vacancy/';
+		$file = file_get_contents($html);
+		
+
+		$doc = phpQuery::newDocument($file);
+
+		$arrayParses = array();
+
+
+		foreach ($doc->find('.list_vacans li') as $k=>$item) {
+
+			$item = pq($item);
+			$itemImgUrl = $item->find('.x-img')->attr('style');
+			preg_match("/[\/]+[^)]+/", $itemImgUrl, $matches);
+
+			$itemArray = array(
+				'name'=>$item->find('.x-name')->text(),
+				'imgUrl'=>$site.$matches[0]
+			);
+			array_push($arrayParses, $itemArray);
+		}
+
+		phpQuery::unloadDocuments();
+		// /Parser
+
     	$pages = Page::all();
     	$carousels = Carousel::all();
     	$vacantoins = Vacantion::all();
     	// $documents =
-    	// $contacts =
+    	// $contacts
     	$reviews = Review::all();
 
 		// dd($carousels);		
@@ -68,15 +96,16 @@ class IndexController extends Controller
     	// dd($menu);
     	// dd($pages);
 
-    	// return view('site.index',array(
-    	// 							'menu'=>$menu,
-    	// 							'carousels'=>$carousels,
-    	// 							// 'pages'=>$pages,
-    	// 							'vacantion'=>$vacantoins,
-    	// 							'reviews'=>$reviews,
-    	// 							));
+    	return view('site.index',array(
+    								'menu'=>$menu,
+    								'carousels'=>$carousels,
+    								// 'pages'=>$pages,
+    								'vacantion'=>$vacantoins,
+    								'reviews'=>$reviews,
+    								'parsItems'=>$arrayParses,
+    								));
 
-    	return view('site.index2');
+    	// return view('site.parser');
     }
 
 }

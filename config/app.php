@@ -180,6 +180,8 @@ return [
         //HTML&FORMS
         Collective\Html\HtmlServiceProvider::class,
 
+       // Electrolinux\phpQuery\phpQuery::class;
+
     ],
 
     /*

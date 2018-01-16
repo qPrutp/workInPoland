@@ -42,52 +42,27 @@
 <div id="vacantions" class="container">
 	<hr/>
 
-@if(isset($vacantion))
+@if(isset($parsItems))
 
 	<h2>Вакансії</h2>
 
-@foreach($vacantion as $item)
+@foreach($parsItems as $item)
 
 	<div class="row">
 		<div class="col-lg-12 mb-12">
 			<div class="card h-100">
-				<h4 class="card-header">{{ $item->name_vacancy }}</h4>
+				<h4 class="card-header">{{ $item['name'] }}</h4>
 				<div class="card-body">
 					<div class="col-lg-12 col-sm-12 portfolio-item">
 						<div class="row">
 							<div class="col-lg-3">
 								<a>
-									<img class="card-img-top" src="assets/img/{{ $item['images'] }}" alt="">
+									<div class="card-img-top x-img" style="background-image: url({{ $item['imgUrl'] }});"></div>
 								</a>
 							</div>
 							<div class="col-lg-9">
 								<div class="card-body">
-									<table width="100%">
-										<tr>
-											<td>zl/год</td>
-											<td>{{ $item->rate_per_hour }}</td>
-										</tr>
-										<tr>
-											<td>місце роботи</td>
-											<td>{{ $item->place_work }}</td>
-										</tr>
-										<tr>
-											<td>проживання</td>
-											<td>{{ $item->accommodation }}</td>
-										</tr>
-										<tr>
-											<td>досвід роботи</td>
-											<td>{{ $item->experience }}</td>
-										</tr>
-										<tr>
-											<td>вік</td>
-											<td>{{ $item->age }}</td>
-										</tr>
-										<tr>
-											<td>знання мови</td>
-											<td>{{ $item->language }}</td>
-										</tr>
-									</table>
+									
 									<br/>
 									<a href="#" class="btn btn-primary">Детальніше</a>
 								</div>
