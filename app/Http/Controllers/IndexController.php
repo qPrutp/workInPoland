@@ -71,9 +71,9 @@ class IndexController extends Controller
 			$itemArray = array(
 				'name' => $item->find('.x-name')->text(),
 				'imgUrl' => $site.$matches[0],
-				'age' => $item->find('.x-AGE')->text(),
-				'pay' => $item->fin('.x-pay')->text(),
-				'working'=> $item->fin('.x-WORKING')->text()
+				'age' => $item->find('.x-block div:eq(0) div:eq(2) span:eq(1)')->text(),
+				'pay' => $item->find('.x-props-block:eq(1) div:eq(2) span:eq(1)')->text()
+				// 'working'=> $item->fin('.x-props-block:eq(0) div:eq(3) span:eq(1)')->text()
 			);
 			array_push($arrayParses, $itemArray);
 		}

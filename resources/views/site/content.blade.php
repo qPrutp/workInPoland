@@ -68,10 +68,6 @@
 											<td>{{ $item['pay'] }}</td>
 										</tr>
 										<tr>
-											<td>місце роботи</td>
-											<td>{{ $item['working'] }}</td>
-										</tr>
-										<tr>
 											<td>вік</td>
 											<td>{{ $item['age'] }}</td>
 										</tr>

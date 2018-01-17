@@ -70,6 +70,16 @@ end parser.php
 
 
 
+										<tr>
+											<td>zl/год</td>
+											<td>{{ $item['pay'] }}</td>
+										</tr>
+										<tr>
+											<td>місце роботи</td>
+											<td>{{ $item['working'] }}</td>
+										</tr>
+
+
 <!-- <table width="100%">
 										<tr>
 											<td>zl/год</td>
