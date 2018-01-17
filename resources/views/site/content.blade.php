@@ -62,7 +62,20 @@
 							</div>
 							<div class="col-lg-9">
 								<div class="card-body">
-									
+									<table width="100%">
+										<tr>
+											<td>zl/год</td>
+											<td>{{ $item['pay'] }}</td>
+										</tr>
+										<tr>
+											<td>місце роботи</td>
+											<td>{{ $item['working'] }}</td>
+										</tr>
+										<tr>
+											<td>вік</td>
+											<td>{{ $item['age'] }}</td>
+										</tr>
+									</table>
 									<br/>
 									<a href="#" class="btn btn-primary">Детальніше</a>
 								</div>
