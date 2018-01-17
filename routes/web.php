@@ -14,6 +14,9 @@
 Route::group(['middleware'=>'web'], function() {
 
 	Route::match(['get','post'],'/',['uses'=>'IndexController@execute','as'=>'home']);
+	//pars_work
+	Route::get('/pars_work',['uses'=>'ParsingController@execute','as'=>'pars_work']);
+
 	Route::get('/reviews',['uses'=>'ReviewsController@execute','as'=>'reviews']);
 
 	Route::auth();
@@ -66,3 +69,5 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function() {
 	});
 
 });
+
+
