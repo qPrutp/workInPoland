@@ -11,6 +11,7 @@ use App\Document;
 use App\Page;
 use App\Review;
 use App\Vacantion;
+use App\ParsWork;
 
 use Mail;
 use DB;

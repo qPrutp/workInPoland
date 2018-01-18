@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use phpQuery;
 use App\Vacantion;
+use App\ParsWork;
 use DB;
 
 class ParsingController extends Controller
