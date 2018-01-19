@@ -16,13 +16,13 @@ class CreateParsworksTable extends Migration
         Schema::create('parsworks', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name_vacancy',100);
-            $table->string('place_work',100);
-            $table->string('experience',100);
-            $table->string('pay',100);
-            $table->string('language',100);
-            $table->string('age',100);
-            $table->string('images',100);
+            $table->string('name_vacancy',100)->nullable();
+            $table->string('place_work',100)->nullable();
+            $table->string('experience',100)->nullable();
+            $table->string('pay',100)->nullable();
+            $table->string('language',100)->nullable();
+            $table->string('age',100)->nullable();
+            $table->string('images',100)->nullable();
 
             $table->timestamps();
         });

@@ -16,8 +16,8 @@ class CreateTableReviews extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name',100);
-            $table->text('text');
+            $table->string('name',100)->nullable();
+            $table->text('text')->nullable();
 
             $table->timestamps();
         });

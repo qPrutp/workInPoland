@@ -33,8 +33,8 @@
 		<div class="col-lg-6 mb-6">
 			<h2>Вакансії з зовнішнього ресурсу</h2>
 		</div>
-		<div class="col-lg-6 mb-6">
-			<a href="#" style="float: right;" class="btn btn-primary">Зберегти в базу</a>
+		<div class="col-lg-6 mb-6">Ваша реклама =)
+			<!-- <a href="#" style="float: right;" class="btn btn-primary">Зберегти в базу</a> -->
 		</div>
 	</div>
 

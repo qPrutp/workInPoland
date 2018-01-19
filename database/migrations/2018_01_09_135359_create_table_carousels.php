@@ -16,8 +16,8 @@ class CreateTableCarousels extends Migration
         Schema::create('carousels', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('images',100);
-            $table->text('text');
+            $table->string('images',100)->nullable();
+            $table->text('text')->nullable();
             
             $table->timestamps();
         });
