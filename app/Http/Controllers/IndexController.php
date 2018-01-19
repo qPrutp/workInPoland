@@ -11,10 +11,11 @@ use App\Document;
 use App\Page;
 use App\Review;
 use App\Vacantion;
-use App\ParsWork;
+use App\Parswork;
 
 use Mail;
-use DB;
+// use DB;
+use Illuminate\Support\Facades\DB;
 
 
 class IndexController extends Controller
@@ -87,6 +88,7 @@ class IndexController extends Controller
     	$pages = Page::all();
     	$carousels = Carousel::all();
     	$vacantoins = Vacantion::all();
+        $parsworks = Parswork::all();
     	// $documents =
     	// $contacts
     	$reviews = Review::all();
@@ -108,7 +110,7 @@ class IndexController extends Controller
     								// 'pages'=>$pages,
     								'vacantion'=>$vacantoins,
     								'reviews'=>$reviews,
-    								// 'parsItems'=>$arrayParses,
+    								'parsworks'=>$parsworks,
     								));
 
     	// return view('site.parser');

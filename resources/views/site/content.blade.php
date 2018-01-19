@@ -7,9 +7,6 @@
 		@foreach($carousels as $k=>$carousel)
 			<li data-target="#carouselExampleIndicators" data-slide-to="$k" class="{{ ($k == 0) ? 'active' : '' }}"></li>
 		@endforeach
-	  <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-	  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-	  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
 	</ol>
 	<div class="carousel-inner" role="listbox">
 
@@ -96,6 +93,60 @@
 	</div>
 
 @endforeach
+
+	@if(isset($parsworks))
+		@foreach($parsworks as $item)
+
+			<div class="row">
+				<div class="col-lg-12 mb-12">
+					<div class="card h-100">
+						<h4 class="card-header">{{ $item['name'] }}</h4>
+						<div class="card-body">
+							<div class="col-lg-12 col-sm-12 portfolio-item">
+								<div class="row">
+									<div class="col-lg-3">
+										<a>
+											<div class="card-img-top x-img" style="background-image: url({{ $item['images'] }});"></div>
+										</a>
+									</div>
+									<div class="col-lg-9">
+										<div class="card-body">
+											<table width="100%">
+												<tr>
+													<td>zl/год</td>
+													<td>{{ $item['pay'] }}</td>
+												</tr>
+												<tr>
+													<td>місце роботи</td>
+													<td>{{ $item['working'] }}</td>
+												</tr>
+												<tr>
+													<td>Досвід роботи</td>
+													<td>{{ $item['experience'] }}</td>
+												</tr>
+												<tr>
+													<td>Знання мови</td>
+													<td>{{ $item['language'] }}</td>
+												</tr>
+												<tr>
+													<td>вік</td>
+													<td>{{ $item['age'] }}</td>
+												</tr>
+											</table>
+											<br/>
+											<!-- <a href="#" class="btn btn-primary">Детальніше</a> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		@endforeach
+		
+	@endif
 
 <br/>
 <br/>

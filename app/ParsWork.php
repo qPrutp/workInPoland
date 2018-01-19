@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ParsWork extends Model
+class Parswork extends Model
 {
     //
+    protected $table = 'parsworks';
+    protected $primaryKey = 'id';
+    public $incrementing = 'id';
 }

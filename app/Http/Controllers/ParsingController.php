@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use phpQuery;
 use App\Vacantion;
-use App\ParsWork;
-use DB;
+use App\Parswork;
+// use DB;
+use Illuminate\Support\Facades\DB;
 
 class ParsingController extends Controller
 {
@@ -40,6 +41,17 @@ class ParsingController extends Controller
 				'experience' => $item->find('.x-props-block:eq(1) div:eq(1) span:eq(1)')->text(),
 				'pay' => $item->find('.x-props-block:eq(1) div:eq(2) span:eq(1)')->text()
 			);
+
+			$parswork = new Parswork();
+			$parswork->name_vacancy = $itemArray['name'];
+			$parswork->place_work = $itemArray['working'];
+			$parswork->experience = $itemArray['experience'];
+			$parswork->pay = $itemArray['pay'];
+			$parswork->language = $itemArray['language'];
+			$parswork->age = $itemArray['age'];
+			$parswork->images = $itemArray['imgUrl'];
+			$parswork->save();
+
 			array_push($arrayParses, $itemArray);
 		}
 

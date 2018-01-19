@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParsworkTable extends Migration
+class CreateParsworksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateParsworkTable extends Migration
      */
     public function up()
     {
-        Schema::create('parswork', function (Blueprint $table) {
+        Schema::create('parsworks', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('name_vacancy',100);
@@ -23,7 +23,7 @@ class CreateParsworkTable extends Migration
             $table->string('language',100);
             $table->string('age',100);
             $table->string('images',100);
-            
+
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateParsworkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parswork');
+        Schema::dropIfExists('parsworks');
     }
 }
